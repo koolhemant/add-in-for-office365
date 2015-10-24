@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <CustomAction Id="1996b9dd-01f5-488f-9050-86d601f110de.MenuItemCustomAction1"
+                RegistrationType="List"
+                RegistrationId="101"
+                Location="EditControlBlock"
+                Sequence="1"
+                Title="Sign with Signicat">
+    <!-- 
+    Update the Url below to the page you want the custom action to use.
+    Start the URL with the token ~remoteAppUrl if the page is in the
+    associated web project, use ~appWebUrl if page is in the app project.
+    -->
+    <UrlAction Url="~remoteAppUrl/Home/Index?{StandardTokens}&amp;SPListItemId={ItemId}&amp;SPListId={ListId}&amp;SPSource={Source}&amp;SPListURLDir={ListUrlDir}&amp;SPItemURL={ItemUrl}" />
+  </CustomAction>
+</Elements>

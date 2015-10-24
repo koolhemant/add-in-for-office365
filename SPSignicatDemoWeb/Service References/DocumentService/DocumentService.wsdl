@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="https://id.signicat.com/definitions/wsdl/Document-v2" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="DocumentService" targetNamespace="https://id.signicat.com/definitions/wsdl/Document-v2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="qualified" targetNamespace="https://id.signicat.com/definitions/wsdl/Document-v2" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="add-notification-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="request-id" type="xs:string" />
+            <xs:element minOccurs="0" name="task-id" type="xs:string" />
+            <xs:element name="notification" type="tns:notification" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="add-task-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="request-id" type="xs:string" />
+            <xs:element name="task" type="tns:task" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="add-task-response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="artifact" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="create-artifact-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="request-id" type="xs:string" />
+            <xs:element name="task-id" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="create-artifact-response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="artifact" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="create-request-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element maxOccurs="unbounded" name="request" type="tns:request" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="create-request-response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="request-id" type="xs:string" />
+            <xs:element minOccurs="0" name="artifact" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="delete-request-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element maxOccurs="unbounded" name="request-id" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="delete-request-response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="deleted" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="disable-notification-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="request-id" type="xs:string" />
+            <xs:element minOccurs="0" name="task-id" type="xs:string" />
+            <xs:element maxOccurs="unbounded" name="notification-id" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="disable-task-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="request-id" type="xs:string" />
+            <xs:element name="task-id" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="find-tasks-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="filter" type="tns:task-filter" />
+            <xs:element default="0" name="from-index" type="xs:integer" />
+            <xs:element default="100" name="to-index" type="xs:integer" />
+            <xs:element minOccurs="0" name="sort-field" type="tns:task-filter-field" />
+            <xs:element minOccurs="0" name="ascending" type="xs:boolean" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="find-tasks-response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="task" nillable="true" type="tns:task-info" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="get-request-history-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="request-id" type="xs:string" />
+            <xs:element name="task-id" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="get-request-history-response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="event" nillable="true" type="tns:event" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="get-request-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="request-id" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="get-request-response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="request" type="tns:request" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="get-status-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element maxOccurs="unbounded" name="request-id" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="get-status-response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="task-status-info" type="tns:task-status-info" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="get-task-count-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="filter" type="tns:task-filter" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="get-task-count-response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="count" type="xs:integer" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="get-task-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="request-id" type="xs:string" />
+            <xs:element name="task-id" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="get-task-response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="task" type="tns:task" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="set-client-status-request">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="service" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="request-id" type="xs:string" />
+            <xs:element name="task-id" type="xs:string" />
+            <xs:element name="client-status" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="notification">
+        <xs:sequence>
+          <xs:element name="recipient" type="xs:string" />
+          <xs:element minOccurs="0" name="sender" type="xs:string" />
+          <xs:element minOccurs="0" name="header" type="xs:string" />
+          <xs:element name="message" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="schedule" nillable="true" type="tns:schedule" />
+        </xs:sequence>
+        <xs:attribute name="type" type="tns:notification-type" use="required" />
+        <xs:attribute name="notification-id" type="xs:string" use="required" />
+      </xs:complexType>
+      <xs:complexType name="schedule">
+        <xs:sequence>
+          <xs:element name="state-is" type="tns:task-status" />
+          <xs:element minOccurs="0" name="wait-until" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="wait" type="tns:wait" />
+          <xs:element minOccurs="0" name="days-of-week" type="xs:string" />
+          <xs:element minOccurs="0" name="time-of-day" type="xs:string" />
+          <xs:element minOccurs="0" name="timezone" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="wait">
+        <xs:sequence />
+        <xs:attribute name="days" type="xs:integer" />
+        <xs:attribute name="hours" type="xs:integer" />
+        <xs:attribute name="minutes" type="xs:integer" />
+      </xs:complexType>
+      <xs:complexType name="task-filter">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="criteria" nillable="true" type="tns:task-filter-criteria" />
+          <xs:element minOccurs="0" name="from-date" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="to-date" type="xs:dateTime" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="task-filter-criteria">
+        <xs:sequence>
+          <xs:element name="field" type="tns:task-filter-field" />
+          <xs:element name="value" type="xs:anyType" />
+          <xs:element minOccurs="0" default="equals" name="operator" type="tns:logical-operator" />
+          <xs:element minOccurs="0" default="true" name="case-sensitive" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="task">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="subject-ref" type="xs:string" />
+          <xs:element minOccurs="0" name="subject" type="tns:subject" />
+          <xs:element minOccurs="0" name="days-to-live" type="xs:int" />
+          <xs:element minOccurs="0" name="dialog" type="tns:dialog" />
+          <xs:element maxOccurs="unbounded" name="document-action" type="tns:document-action" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="notification" nillable="true" type="tns:notification" />
+          <xs:element minOccurs="0" name="authentication" type="tns:authentication" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="signature" nillable="true" type="tns:signature" />
+          <xs:element minOccurs="0" name="on-task-postpone" type="xs:string" />
+          <xs:element minOccurs="0" name="on-task-complete" type="xs:string" />
+          <xs:element minOccurs="0" name="on-task-cancel" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="depends-on-task" type="xs:string" />
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required" />
+        <xs:attribute name="bundle" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="subject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="national-id" type="xs:string" />
+          <xs:element minOccurs="0" name="first-name" type="xs:string" />
+          <xs:element minOccurs="0" name="last-name" type="xs:string" />
+          <xs:element minOccurs="0" name="mobile" type="xs:string" />
+          <xs:element minOccurs="0" name="email" type="xs:string" />
+          <xs:element minOccurs="0" name="username" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="attribute" nillable="true" type="tns:attribute" />
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="attribute">
+        <xs:sequence />
+        <xs:attribute name="name" type="xs:string" />
+        <xs:attribute name="value" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="dialog">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="title" type="xs:string" />
+          <xs:element minOccurs="0" name="message" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="document-action">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dialog" type="tns:dialog" />
+          <xs:element minOccurs="0" name="document-ref" type="xs:string" />
+          <xs:element minOccurs="0" name="document" type="tns:document" />
+        </xs:sequence>
+        <xs:attribute name="order-index" type="xs:int" />
+        <xs:attribute name="type" type="tns:document-action-type" use="required" />
+        <xs:attribute name="optional" type="xs:boolean" />
+        <xs:attribute name="send-result-to-archive" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="document">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="external-reference" type="xs:string" />
+          <xs:element minOccurs="0" name="form" type="tns:form" />
+          <xs:element minOccurs="0" name="sign-text-entry" type="xs:string" />
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="form">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="input-param" type="tns:form-param" />
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required" />
+      </xs:complexType>
+      <xs:complexType name="form-param">
+        <xs:sequence />
+        <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="value" type="xs:string" use="required" />
+      </xs:complexType>
+      <xs:complexType name="sds-document">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:document">
+            <xs:sequence>
+              <xs:element name="description" type="xs:string" />
+            </xs:sequence>
+            <xs:attribute name="ref-sds-id" type="xs:string" use="required" />
+            <xs:attribute name="send-to-archive" type="xs:boolean" />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="provided-document">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:document">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="data" type="xs:base64Binary" />
+              <xs:element name="description" type="xs:string" />
+            </xs:sequence>
+            <xs:attribute name="mime-type" type="xs:string" use="required" />
+            <xs:attribute name="send-to-archive" type="xs:boolean" />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="archive-document">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:document">
+            <xs:sequence />
+            <xs:attribute name="ref-archive-id" type="xs:string" use="required" />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="result-document">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:document">
+            <xs:sequence />
+            <xs:attribute name="ref-task-id" type="xs:string" use="required" />
+            <xs:attribute name="ref-document-id" type="xs:string" use="required" />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="upload-document">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:document">
+            <xs:sequence>
+              <xs:element name="description" type="xs:string" />
+            </xs:sequence>
+            <xs:attribute name="send-to-archive" type="xs:boolean" />
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="authentication">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dialog" type="tns:dialog" />
+          <xs:element maxOccurs="unbounded" name="method" type="xs:string" />
+        </xs:sequence>
+        <xs:attribute name="artifact" type="xs:boolean" />
+      </xs:complexType>
+      <xs:complexType name="signature">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dialog" type="tns:dialog" />
+          <xs:element maxOccurs="unbounded" name="method" type="xs:string" />
+        </xs:sequence>
+        <xs:attribute name="if-authentication" type="xs:string" />
+      </xs:complexType>
+      <xs:complexType name="request">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="profile" type="xs:string" />
+          <xs:element minOccurs="0" name="language" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="subject" nillable="true" type="tns:subject" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="document" nillable="true" type="tns:document" />
+          <xs:element maxOccurs="unbounded" name="task" type="tns:task" />
+          <xs:element minOccurs="0" name="client-reference" type="xs:string" />
+          <xs:element minOccurs="0" name="sender" type="tns:sender" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="notification" nillable="true" type="tns:notification" />
+          <xs:element minOccurs="0" name="days-until-deletion" type="xs:int" />
+          <xs:element minOccurs="0" default="native" name="sdo-format" type="xs:string" />
+          <xs:element minOccurs="0" name="account" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sender">
+        <xs:sequence>
+          <xs:element name="unique-id" type="xs:string" />
+          <xs:element minOccurs="0" name="first-name" type="xs:string" />
+          <xs:element minOccurs="0" name="last-name" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="task-info">
+        <xs:sequence />
+        <xs:attribute name="id" type="xs:string" />
+        <xs:attribute name="request-id" type="xs:string" />
+        <xs:attribute name="task-id" type="xs:string" />
+        <xs:attribute name="document-id" type="xs:string" />
+        <xs:attribute name="archive-id" type="xs:string" />
+        <xs:attribute name="account" type="xs:string" />
+        <xs:attribute name="language" type="xs:string" />
+        <xs:attribute name="task-status" type="tns:task-status" />
+        <xs:attribute name="document-description" type="xs:string" />
+        <xs:attribute name="mime-type" type="xs:string" />
+        <xs:attribute name="subject-first-name" type="xs:string" />
+        <xs:attribute name="subject-last-name" type="xs:string" />
+        <xs:attribute name="subject-email" type="xs:string" />
+        <xs:attribute name="subject-national-id" type="xs:string" />
+        <xs:attribute name="subject-mobile" type="xs:string" />
+        <xs:attribute name="created" type="xs:dateTime" />
+        <xs:attribute name="last-updated" type="xs:dateTime" />
+        <xs:attribute name="signer" type="xs:string" />
+        <xs:attribute name="sender-unique-id" type="xs:string" />
+        <xs:attribute name="client-reference" type="xs:string" />
+        <xs:attribute name="client-status" type="xs:string" />
+        <xs:attribute name="days-to-live" type="xs:integer" />
+      </xs:complexType>
+      <xs:complexType name="task-status-info">
+        <xs:sequence>
+          <xs:element name="request-id" type="xs:string" />
+          <xs:element name="task-id" type="xs:string" />
+          <xs:element name="task-status" type="tns:task-status" />
+          <xs:element minOccurs="0" name="client-reference" type="xs:string" />
+          <xs:element minOccurs="0" name="client-status" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="document-status" type="tns:document-status" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="document-status">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="original-uri" type="xs:string" />
+          <xs:element minOccurs="0" name="result-uri" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="form-output-param" type="tns:form-param" />
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:string" use="required" />
+      </xs:complexType>
+      <xs:complexType name="event">
+        <xs:sequence>
+          <xs:element name="event" type="tns:event-type" />
+          <xs:element name="event-time" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="data" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="document-data">
+        <xs:sequence>
+          <xs:element name="mime-type" type="xs:string" />
+          <xs:element name="data" type="xs:base64Binary" />
+        </xs:sequence>
+        <xs:attribute name="archive-id" type="xs:string" />
+      </xs:complexType>
+      <xs:simpleType name="task-status">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="created" />
+          <xs:enumeration value="completed" />
+          <xs:enumeration value="rejected" />
+          <xs:enumeration value="expired" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="notification-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="SMS" />
+          <xs:enumeration value="EMAIL" />
+          <xs:enumeration value="URL" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="task-filter-field">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="id" />
+          <xs:enumeration value="request-id" />
+          <xs:enumeration value="task-id" />
+          <xs:enumeration value="document-id" />
+          <xs:enumeration value="archive-id" />
+          <xs:enumeration value="account" />
+          <xs:enumeration value="language" />
+          <xs:enumeration value="task-state" />
+          <xs:enumeration value="document-description" />
+          <xs:enumeration value="mime-type" />
+          <xs:enumeration value="subject-first-name" />
+          <xs:enumeration value="subject-last-name" />
+          <xs:enumeration value="subject-email" />
+          <xs:enumeration value="subject-national-id" />
+          <xs:enumeration value="subject-mobile" />
+          <xs:enumeration value="authentication-type" />
+          <xs:enumeration value="created" />
+          <xs:enumeration value="last-updated" />
+          <xs:enumeration value="signer" />
+          <xs:enumeration value="sender-unique-id" />
+          <xs:enumeration value="client-reference" />
+          <xs:enumeration value="client-status" />
+          <xs:enumeration value="days-to-live" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="logical-operator">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="equals" />
+          <xs:enumeration value="not-equals" />
+          <xs:enumeration value="contains" />
+          <xs:enumeration value="less-than" />
+          <xs:enumeration value="greater-than" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="document-action-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="sign" />
+          <xs:enumeration value="view" />
+          <xs:enumeration value="upload" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="event-type">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="request-created" />
+          <xs:enumeration value="notification-sent" />
+          <xs:enumeration value="task-started" />
+          <xs:enumeration value="task-rejected" />
+          <xs:enumeration value="task-completed" />
+          <xs:enumeration value="error" />
+          <xs:enumeration value="document-uploaded" />
+          <xs:enumeration value="document-signed" />
+          <xs:enumeration value="document-viewed" />
+          <xs:enumeration value="document-sign-cancelled" />
+          <xs:enumeration value="document-deleted" />
+          <xs:enumeration value="user-authenticated" />
+          <xs:enumeration value="user-authentication-cancelled" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="addTaskResponse">
+    <wsdl:part name="response" element="tns:add-task-response" />
+  </wsdl:message>
+  <wsdl:message name="disableTaskResponse" />
+  <wsdl:message name="getTaskCount">
+    <wsdl:part name="request" element="tns:get-task-count-request" />
+  </wsdl:message>
+  <wsdl:message name="deleteRequest">
+    <wsdl:part name="delete-request-request" element="tns:delete-request-request" />
+  </wsdl:message>
+  <wsdl:message name="getTask">
+    <wsdl:part name="get-task-request" element="tns:get-task-request" />
+  </wsdl:message>
+  <wsdl:message name="getStatusResponse">
+    <wsdl:part name="response" element="tns:get-status-response" />
+  </wsdl:message>
+  <wsdl:message name="setClientStatusResponse" />
+  <wsdl:message name="disableNotificationResponse" />
+  <wsdl:message name="disableTask">
+    <wsdl:part name="request" element="tns:disable-task-request" />
+  </wsdl:message>
+  <wsdl:message name="findTasks">
+    <wsdl:part name="find-tasks-request" element="tns:find-tasks-request" />
+  </wsdl:message>
+  <wsdl:message name="deleteRequestResponse">
+    <wsdl:part name="delete-request-response" element="tns:delete-request-response" />
+  </wsdl:message>
+  <wsdl:message name="addNotificationResponse" />
+  <wsdl:message name="setClientStatus">
+    <wsdl:part name="request" element="tns:set-client-status-request" />
+  </wsdl:message>
+  <wsdl:message name="getRequestResponse">
+    <wsdl:part name="get-request-response" element="tns:get-request-response" />
+  </wsdl:message>
+  <wsdl:message name="createArtifact">
+    <wsdl:part name="request" element="tns:create-artifact-request" />
+  </wsdl:message>
+  <wsdl:message name="getRequestHistoryResponse">
+    <wsdl:part name="response" element="tns:get-request-history-response" />
+  </wsdl:message>
+  <wsdl:message name="addNotification">
+    <wsdl:part name="request" element="tns:add-notification-request" />
+  </wsdl:message>
+  <wsdl:message name="getTaskCountResponse">
+    <wsdl:part name="response" element="tns:get-task-count-response" />
+  </wsdl:message>
+  <wsdl:message name="getTaskResponse">
+    <wsdl:part name="get-task-response" element="tns:get-task-response" />
+  </wsdl:message>
+  <wsdl:message name="createRequestResponse">
+    <wsdl:part name="create-request-response" element="tns:create-request-response" />
+  </wsdl:message>
+  <wsdl:message name="createRequest">
+    <wsdl:part name="create-request-request" element="tns:create-request-request" />
+  </wsdl:message>
+  <wsdl:message name="getRequest">
+    <wsdl:part name="get-request-request" element="tns:get-request-request" />
+  </wsdl:message>
+  <wsdl:message name="getStatus">
+    <wsdl:part name="request" element="tns:get-status-request" />
+  </wsdl:message>
+  <wsdl:message name="disableNotification">
+    <wsdl:part name="request" element="tns:disable-notification-request" />
+  </wsdl:message>
+  <wsdl:message name="createArtifactResponse">
+    <wsdl:part name="response" element="tns:create-artifact-response" />
+  </wsdl:message>
+  <wsdl:message name="findTasksResponse">
+    <wsdl:part name="find-tasks-response" element="tns:find-tasks-response" />
+  </wsdl:message>
+  <wsdl:message name="getRequestHistory">
+    <wsdl:part name="request" element="tns:get-request-history-request" />
+  </wsdl:message>
+  <wsdl:message name="addTask">
+    <wsdl:part name="request" element="tns:add-task-request" />
+  </wsdl:message>
+  <wsdl:portType name="DocumentEndPoint">
+    <wsdl:operation name="setClientStatus">
+      <wsdl:input name="setClientStatus" message="tns:setClientStatus" />
+      <wsdl:output name="setClientStatusResponse" message="tns:setClientStatusResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="createArtifact">
+      <wsdl:input name="createArtifact" message="tns:createArtifact" />
+      <wsdl:output name="createArtifactResponse" message="tns:createArtifactResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="addNotification">
+      <wsdl:input name="addNotification" message="tns:addNotification" />
+      <wsdl:output name="addNotificationResponse" message="tns:addNotificationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getTaskCount">
+      <wsdl:input name="getTaskCount" message="tns:getTaskCount" />
+      <wsdl:output name="getTaskCountResponse" message="tns:getTaskCountResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteRequest">
+      <wsdl:input name="deleteRequest" message="tns:deleteRequest" />
+      <wsdl:output name="deleteRequestResponse" message="tns:deleteRequestResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getTask">
+      <wsdl:input name="getTask" message="tns:getTask" />
+      <wsdl:output name="getTaskResponse" message="tns:getTaskResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="createRequest">
+      <wsdl:input name="createRequest" message="tns:createRequest" />
+      <wsdl:output name="createRequestResponse" message="tns:createRequestResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getRequest">
+      <wsdl:input name="getRequest" message="tns:getRequest" />
+      <wsdl:output name="getRequestResponse" message="tns:getRequestResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="disableTask">
+      <wsdl:input name="disableTask" message="tns:disableTask" />
+      <wsdl:output name="disableTaskResponse" message="tns:disableTaskResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="findTasks">
+      <wsdl:input name="findTasks" message="tns:findTasks" />
+      <wsdl:output name="findTasksResponse" message="tns:findTasksResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getStatus">
+      <wsdl:input name="getStatus" message="tns:getStatus" />
+      <wsdl:output name="getStatusResponse" message="tns:getStatusResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="disableNotification">
+      <wsdl:input name="disableNotification" message="tns:disableNotification" />
+      <wsdl:output name="disableNotificationResponse" message="tns:disableNotificationResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getRequestHistory">
+      <wsdl:input name="getRequestHistory" message="tns:getRequestHistory" />
+      <wsdl:output name="getRequestHistoryResponse" message="tns:getRequestHistoryResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="addTask">
+      <wsdl:input name="addTask" message="tns:addTask" />
+      <wsdl:output name="addTaskResponse" message="tns:addTaskResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DocumentServiceSoapBinding" type="tns:DocumentEndPoint">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="setClientStatus">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="setClientStatus">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="setClientStatusResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createArtifact">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="createArtifact">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createArtifactResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addNotification">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="addNotification">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addNotificationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTaskCount">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getTaskCount">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getTaskCountResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteRequest">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="deleteRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteRequestResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTask">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getTask">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getTaskResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createRequest">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="createRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createRequestResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRequest">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getRequest">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getRequestResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="disableTask">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="disableTask">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="disableTaskResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findTasks">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="findTasks">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findTasksResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getStatus">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getStatus">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getStatusResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="disableNotification">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="disableNotification">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="disableNotificationResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRequestHistory">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getRequestHistory">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getRequestHistoryResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addTask">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="addTask">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addTaskResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DocumentService">
+    <wsdl:port name="DocumentServiceEndPointPort" binding="tns:DocumentServiceSoapBinding">
+      <soap:address location="https://preprod.signicat.com/ws/documentservice-v2" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

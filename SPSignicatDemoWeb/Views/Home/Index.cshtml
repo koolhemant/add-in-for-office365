@@ -1,0 +1,86 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE>
+<html>
+
+<head>
+    <style>
+        h1 {
+            font-size: 42px;
+            margin-top: 20px;
+            margin-bottom: 0px;
+        }
+
+        h1, h2 {
+            font-family: sans-serif;
+            margin-left: 20px;
+            color: #555555;
+        }
+
+        div.eid-list-icons {
+            margin-left: 20px;
+            margin-top: 40px;
+        }
+
+            div.eid-list-icons > a {
+                display: inline-block;
+                width: 250px;
+                margin-right: 10px;
+                margin-bottom: 14px;
+                border-radius: 4px;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.175);
+            }
+
+        a > img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+        How would you like to sign?
+    </h1>
+    <h2>Please choose your preferred method of signature.</h2>
+    <div class="eid-list-icons">
+        <a class="">
+            <img src="https://www.signicat.com/wp-content/uploads/2014/07/eksport_bank-id-logo.png" alt="Norwegian BankID">
+        </a>
+        <a class="">
+            <img src="https://www.signicat.com/wp-content/uploads/2014/07/eksport_bank-id-mobil-logo.png" alt="Norwegian BankID on mobile">
+        </a>
+        <a class="">
+            <img src="https://www.signicat.com/wp-content/uploads/2014/07/eksport_buypass-logo.png" alt="Buypass">
+        </a>
+        <a class="">
+            <img src="https://www.signicat.com/wp-content/uploads/2014/07/eksport_comfides-logo.png" alt="Commfides">
+        </a>
+        <a class="">
+            <img src="https://www.signicat.com/wp-content/uploads/2014/07/eksport_dnie-logo.png" alt="DNIe">
+        </a>
+        <a class="">
+            <img src="https://www.signicat.com/wp-content/uploads/2014/07/eksport_nem-id-logo.png" alt="NemID">
+        </a>
+        <a class="" href="@Url.Action("Sign", "Home", new { SPHostURL = ViewBag.SPHostURL, SPListItemId = ViewBag.SPListItemId,
+                         SPListId = ViewBag.SPListId, SPSource = ViewBag.SPSource, SPListURLDir = ViewBag.SPListURLDir, SPItemUrl = ViewBag.SPItemUrl, Method = "sbid-mobil-2014" })">
+            <img src="https://www.signicat.com/wp-content/uploads/2014/07/eksport_svensk-bank-id-logo.png" alt="Swedish BankID">
+        </a>
+        <a class="">
+            <img src="https://www.signicat.com/wp-content/uploads/2014/07/eksport_tupas-logo.png" alt="Tupas">
+        </a>
+        <a class="">
+            <img src="https://www.signicat.com/wp-content/uploads/2014/08/est-eid-logo.png" alt="EstEID">
+        </a>
+        <a class="">
+            <img src="@Url.Content("~/Content/mobiilivarmenne.png")" alt="Mobiilivarmenne">
+        </a>
+        <a class="" href="@Url.Action("Sign", "Home", new { SPHostURL = ViewBag.SPHostURL, SPListItemId = ViewBag.SPListItemId,
+                         SPListId = ViewBag.SPListId, SPSource = ViewBag.SPSource, SPListURLDir = ViewBag.SPListURLDir, SPItemUrl = ViewBag.SPItemUrl, Method = "easysign" })">
+            <img src="@Url.Content("~/Content/easy_sign_logo.png")" alt="EasySign">
+        </a>
+    </div>
+</body>
+
+</html>
